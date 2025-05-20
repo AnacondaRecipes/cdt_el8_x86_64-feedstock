@@ -1,0 +1,33 @@
+{% set version = "1.8.0.412" %}
+
+package:
+  name: java-1.8.0-openjdk-devel-el8-x86_64
+  version: {{ version }}
+
+source:
+  - url: https://raw.repo.almalinux.org/vault/8.9/AppStream/x86_64/os/Packages/java-1.8.0-openjdk-devel-{{ version }}.b08-2.el8.x86_64.rpm
+    sha256: 1141e50f8d69ed8d41c9c82a9e8490a1eafd3387d3ec65b5182d4e1192932e90
+    no_hoist: true
+    folder: binary
+
+build:
+  number: 0
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - java-1.8.0-openjdk-el8-x86_64 =={{ version }}
+  host:
+    - java-1.8.0-openjdk-el8-x86_64 =={{ version }}
+  run:
+    - java-1.8.0-openjdk-el8-x86_64 =={{ version }}
+
+about:
+  home: http://openjdk.java.net/
+  license: ASL 1.1 and ASL 2.0 and BSD and BSD with advertising and GPL+ and GPLv2 and GPLv2 with exceptions and IJG and LGPLv2+ and MIT and MPLv1.1 and MPLv2.0 and Public Domain and W3C and zlib
+  license_family: GPL2
+  summary: "(CDT) OpenJDK Development Environment"
+  description: |
+        The OpenJDK development tools.

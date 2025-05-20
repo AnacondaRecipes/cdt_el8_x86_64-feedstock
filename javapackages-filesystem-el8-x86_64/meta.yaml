@@ -1,0 +1,27 @@
+package:
+  name: javapackages-filesystem-el8-x86_64
+  version: 5.3.0
+
+source:
+  - url: https://vault.centos.org/centos/8/AppStream/x86_64/os/Packages/javapackages-filesystem-5.3.0-1.module_el8.0.0+11+5b8c10bd.noarch.rpm
+    sha256: 64ab9dd5e8024a1148b2f902cad82434b3afa42d86f63b06f09cb8d98f0836c1
+    no_hoist: true
+    folder: binary
+
+build:
+  number: 0
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+about:
+  home: http://www.jpackage.org/
+  license: BSD
+  license_family: BSD
+  summary: "(CDT) JPackage utilities"
+  description: |
+        Utilities for the JPackage Project <http://www.jpackage.org/>.  It contains
+        also the License, man pages, documentation, XSL files of general use with
+        maven2, a header file for spec files, etc. Please See the
+        /usr/share/doc/jpackage-utils-1.7.5/jpackage-utils-README file for more
+        information.

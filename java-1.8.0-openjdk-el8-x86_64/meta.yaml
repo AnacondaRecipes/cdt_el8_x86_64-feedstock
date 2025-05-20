@@ -1,0 +1,40 @@
+package:
+  name: java-1.8.0-openjdk-el8-x86_64
+  version: 1.8.0.412
+
+source:
+  - url: https://raw.repo.almalinux.org/vault/8.9/AppStream/x86_64/os/Packages/java-1.8.0-openjdk-1.8.0.412.b08-2.el8.x86_64.rpm
+    sha256: d87d1337b6f6ed55a611fd9fb2422c017112a800b3ea4bb68f87868e8a56dec9
+    no_hoist: true
+    folder: binary
+
+build:
+  number: 0
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - copy-jdk-configs-el8-x86_64 >=4.0
+    - javapackages-filesystem-el8-x86_64 >=5.3.0
+    - libjpeg-turbo
+    - ca-certificates
+  host:
+    - copy-jdk-configs-el8-x86_64 >=4.0
+    - javapackages-filesystem-el8-x86_64 >=5.3.0
+    - libjpeg-turbo
+    - ca-certificates
+  run:
+    - copy-jdk-configs-el8-x86_64 >=4.0
+    - javapackages-filesystem-el8-x86_64 >=5.3.0
+    - libjpeg-turbo
+    - ca-certificates
+
+about:
+  home: http://openjdk.java.net/
+  license: ASL 1.1 and ASL 2.0 and BSD and BSD with advertising and GPL+ and GPLv2 and GPLv2 with exceptions and IJG and LGPLv2+ and MIT and MPLv1.1 and MPLv2.0 and Public Domain and W3C and zlib
+  license_family: GPL2
+  summary: "(CDT) OpenJDK Runtime Environment"
+  description: |
+        The OpenJDK runtime environment.
