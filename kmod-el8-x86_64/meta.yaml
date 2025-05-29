@@ -3,11 +3,11 @@ package:
   version: 25
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/kmod-25-19.el8.x86_64.rpm
-    sha256: 95b70611327377b76917da6a4ab964f314458fef165d720cc02effe2a50fd48a
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/k/kmod-25-19.el8.x86_64.rpm
+    sha256: 993d53503b870d0520f04183c8642ba2435fbd78d0dd44fbae4b1d3c05416ef1
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/kmod-25-19.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/k/kmod-25-19.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -16,6 +16,8 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
+  ignore_run_exports:
+    - sysroot_linux-64
   missing_dso_whitelist:
     - '*'
 

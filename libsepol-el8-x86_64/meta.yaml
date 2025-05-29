@@ -3,11 +3,11 @@ package:
   version: 2.9
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/libsepol-2.9-3.el8.x86_64.rpm
-    sha256: 55bfbf557e668657b3d8e9b7389c9ec89944c9c21957eecb5e311a9d50a7708d
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/l/libsepol-2.9-3.el8.x86_64.rpm
+    sha256: cc017c27e60d9f6d83db9d6828cad89b804d9f50476d88b23e0cd7a69b58f107
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/libsepol-2.9-3.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libsepol-2.9-3.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -16,6 +16,8 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
+  ignore_run_exports:
+    - sysroot_linux-64
   missing_dso_whitelist:
     - '*'
 

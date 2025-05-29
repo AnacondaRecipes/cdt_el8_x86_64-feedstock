@@ -3,11 +3,11 @@ package:
   version: 3.0.7
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/audit-libs-3.0.7-5.el8.x86_64.rpm
-    sha256: 552ae323cd8de99295c0addc8f5dd0a2737f10d1f46c9f62f1bc7ce072c41841
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/a/audit-libs-3.0.7-5.el8.x86_64.rpm
+    sha256: fd745f486bd742b474ceef449fcdf4398d4406675a1c60de8b79ed8d5bdf40e4
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/audit-3.0.7-5.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/a/audit-3.0.7-5.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -16,14 +16,19 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
+  ignore_run_exports:
+    - sysroot_linux-64
+    - libcap-ng-el8-x86_64
   missing_dso_whitelist:
     - '*'
 
 requirements:
   host:
     - sysroot_linux-64 2.28.*
+    - libcap-ng-el8-x86_64 >=0.7.11 *_0
   run:
     - sysroot_linux-64 2.28.*
+    - libcap-ng-el8-x86_64 >=0.7.11 *_0
 
 test:
   commands:

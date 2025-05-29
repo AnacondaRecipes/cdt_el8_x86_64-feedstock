@@ -3,11 +3,11 @@ package:
   version: 3.0.7
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/audit-libs-devel-3.0.7-5.el8.x86_64.rpm
-    sha256: 357e3d6d3fae2c8b214452fd6c4c8f279fb6a2643290a76f7d7535dbe40d037e
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/a/audit-libs-devel-3.0.7-5.el8.x86_64.rpm
+    sha256: 7b7a116edb95349c562eb5036fbab81e16e42323840b84c09265a2fc711458b6
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/audit-3.0.7-5.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/a/audit-3.0.7-5.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 

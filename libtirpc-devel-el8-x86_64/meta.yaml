@@ -1,0 +1,47 @@
+package:
+  name: libtirpc-devel-el8-x86_64
+  version: 1.1.4
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/l/libtirpc-devel-1.1.4-8.el8.x86_64.rpm
+    sha256: 3808f6fafd018a080b30c5b862a133824dbff26881902ab1a80307d8a7a5cbd5
+    no_hoist: true
+    folder: binary
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libtirpc-1.1.4-8.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: 0
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libtirpc-el8-x86_64 ==1.1.4 *_0
+  host:
+    - libtirpc-el8-x86_64 ==1.1.4 *_0
+    - sysroot_linux-64 2.28.*
+  run:
+    - libtirpc-el8-x86_64 ==1.1.4 *_0
+    - sysroot_linux-64 2.28.*
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
+  license: SISSL and BSD
+  license_family: BSD
+#  license_file: libtirpc-copying.lib
+  summary: (CDT) Development files for the libtirpc library
+  description: |
+    This package includes header files and libraries necessary for
+    developing programs which use the tirpc library.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
+

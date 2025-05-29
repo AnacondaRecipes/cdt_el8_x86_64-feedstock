@@ -3,11 +3,11 @@ package:
   version: 2.9
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/libselinux-2.9-8.el8.x86_64.rpm
-    sha256: c7e2ef40e4adee049a8aab6110d410559ca3f44eaa68be5d0993f298e954edc0
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/l/libselinux-2.9-8.el8.x86_64.rpm
+    sha256: d1e85c65cb0f399e1863dfd4e67c8e0fadf7129ce6ea0ff94050ab0a13ea7fb5
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/libselinux-2.9-8.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libselinux-2.9-8.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -16,6 +16,10 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
+  ignore_run_exports:
+    - sysroot_linux-64
+    - libsepol-el8-x86_64
+    - pcre2
   missing_dso_whitelist:
     - '*'
 
@@ -24,9 +28,11 @@ requirements:
     - libsepol-el8-x86_64 >=2.9 *_0
   host:
     - libsepol-el8-x86_64 >=2.9 *_0
+    - pcre2
     - sysroot_linux-64 2.28.*
   run:
     - libsepol-el8-x86_64 >=2.9 *_0
+    - pcre2
     - sysroot_linux-64 2.28.*
 
 test:

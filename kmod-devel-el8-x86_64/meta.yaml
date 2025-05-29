@@ -7,7 +7,7 @@ source:
     sha256: 395c0d0004bfd8c0f4c66910a31afefbfc90a55e48ea98ffedeeab9a178cae6f
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/kmod-25-19.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/k/kmod-25-19.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 

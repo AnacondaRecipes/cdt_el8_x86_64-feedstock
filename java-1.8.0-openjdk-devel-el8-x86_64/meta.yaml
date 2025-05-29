@@ -13,6 +13,8 @@ source:
 build:
   number: 0
   noarch: generic
+  ignore_run_exports:
+    - java-1.8.0-openjdk-el8-x86_64
   missing_dso_whitelist:
     - '*'
 

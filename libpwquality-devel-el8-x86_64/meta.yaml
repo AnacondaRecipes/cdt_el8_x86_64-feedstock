@@ -7,7 +7,7 @@ source:
     sha256: ad22bc7c947ef8d18a1396bc846768938854737ff2bad22eb0b9096167ddefd5
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/libpwquality-1.4.4-6.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libpwquality-1.4.4-6.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 

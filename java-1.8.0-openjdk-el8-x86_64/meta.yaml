@@ -11,6 +11,8 @@ source:
 build:
   number: 0
   noarch: generic
+  ignore_run_exports:
+    - libjpeg-turbo
   missing_dso_whitelist:
     - '*'
 
@@ -20,16 +22,34 @@ requirements:
     - javapackages-filesystem-el8-x86_64 >=5.3.0
     - libjpeg-turbo
     - ca-certificates
+    - alsa-lib
+    - xorg-libx11
+    - xorg-libxext
+    - xorg-libxi
+    - xorg-libxrender
+    - xorg-libxtst
   host:
     - copy-jdk-configs-el8-x86_64 >=4.0
     - javapackages-filesystem-el8-x86_64 >=5.3.0
     - libjpeg-turbo
     - ca-certificates
+    - alsa-lib
+    - xorg-libx11
+    - xorg-libxext
+    - xorg-libxi
+    - xorg-libxrender
+    - xorg-libxtst
   run:
     - copy-jdk-configs-el8-x86_64 >=4.0
     - javapackages-filesystem-el8-x86_64 >=5.3.0
     - libjpeg-turbo
     - ca-certificates
+    - alsa-lib
+    - xorg-libx11
+    - xorg-libxext
+    - xorg-libxi
+    - xorg-libxrender
+    - xorg-libxtst
 
 about:
   home: http://openjdk.java.net/

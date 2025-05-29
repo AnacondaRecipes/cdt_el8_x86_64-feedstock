@@ -3,11 +3,11 @@ package:
   version: 1.4.4
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/libpwquality-1.4.4-6.el8.x86_64.rpm
-    sha256: 7adadce43bd50d322cce20cd62e4856f147de863fc967d72189d3810b8c2475e
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/l/libpwquality-1.4.4-6.el8.x86_64.rpm
+    sha256: 234478f14a0b186f482e94a776cc77576eb9c6d09ba0e66178a85f21e034c8a0
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/libpwquality-1.4.4-6.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libpwquality-1.4.4-6.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -16,6 +16,8 @@ build:
   noarch: generic
   binary_relocation: False
   detect_binary_files_with_prefix: False
+  ignore_run_exports:
+    - sysroot_linux-64
   missing_dso_whitelist:
     - '*'
 

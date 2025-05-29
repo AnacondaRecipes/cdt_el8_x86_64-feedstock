@@ -1,0 +1,45 @@
+package:
+  name: libcap-ng-el8-x86_64
+  version: 0.7.11
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/l/libcap-ng-0.7.11-1.el8.x86_64.rpm
+    sha256: 761a00cbdad22fc3d308ce6e49aa3b3909cd2a8b93794da53ea74344a280cde5
+    no_hoist: true
+    folder: binary
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libcap-ng-0.7.11-1.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: 0
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  ignore_run_exports:
+    - sysroot_linux-64
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.28.*
+  run:
+    - sysroot_linux-64 2.28.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://people.redhat.com/sgrubb/libcap-ng
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+#  license_file: libcap-ng-copying.lib
+  summary: (CDT) An alternate posix capabilities library
+  description: |
+    Libcap-ng is a library that makes using posix capabilities easier
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
+

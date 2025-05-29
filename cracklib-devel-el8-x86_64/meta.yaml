@@ -7,7 +7,7 @@ source:
     sha256: 08f3fc9a80bfd0d2b840c30918226c3c5e9ba5a80859afe4807807e55175de1b
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/cracklib-2.9.6-15.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/c/cracklib-2.9.6-15.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
