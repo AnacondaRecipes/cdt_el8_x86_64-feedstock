@@ -11,6 +11,7 @@ source:
     folder: binary
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
   ignore_run_exports:
