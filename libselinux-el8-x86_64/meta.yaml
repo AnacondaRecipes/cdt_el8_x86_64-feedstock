@@ -17,28 +17,21 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  ignore_run_exports:
-    - sysroot_linux-64
-    - libsepol-el8-x86_64
-    - pcre2
   missing_dso_whitelist:
     - '*'
 
 requirements:
   build:
-    - libsepol-el8-x86_64 >=2.9 *_0
+    - sysroot_linux-64 2.28.*
   host:
-    - libsepol-el8-x86_64 >=2.9 *_0
-    - pcre2
-    - sysroot_linux-64 2.28.*
   run:
+    - sysroot_linux-64 2.28.*
     - libsepol-el8-x86_64 >=2.9 *_0
     - pcre2
-    - sysroot_linux-64 2.28.*
 
 test:
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libselinux.so.1
 
 about:
   home: https://github.com/SELinuxProject/selinux/wiki
@@ -60,4 +53,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

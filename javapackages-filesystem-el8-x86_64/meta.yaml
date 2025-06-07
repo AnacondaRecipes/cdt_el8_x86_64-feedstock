@@ -12,8 +12,6 @@ build:
   skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
-  missing_dso_whitelist:
-    - '*'
 
 about:
   home: http://www.jpackage.org/

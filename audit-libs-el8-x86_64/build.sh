@@ -20,8 +20,16 @@ if [[ -d usr/lib64 ]]; then
 fi
 pushd ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot > /dev/null 2>&1
 cp -Rf "${SRC_DIR}"/binary/* .
-popd
-pushd ${PREFIX}/x86_64-conda-linux-gnu/sysroot > /dev/null 2>&1
-cp -Rf --copy-contents "${SRC_DIR}"/binary/* .
+
+# Remove files that should be and are present in -devel to avoid conflicts.
+rm -f ./usr/lib64/{libaudit.so,libauparse.so}
+
 popd
 
+pushd ${PREFIX}/x86_64-conda-linux-gnu/sysroot > /dev/null 2>&1
+cp -Rf --copy-contents "${SRC_DIR}"/binary/* .
+
+# Remove files that should be and are present in -devel to avoid conflicts.
+rm -f ./usr/lib64/{libaudit.so,libauparse.so}
+
+popd

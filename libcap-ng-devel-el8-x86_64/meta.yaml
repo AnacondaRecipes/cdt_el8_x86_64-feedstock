@@ -17,21 +17,17 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  missing_dso_whitelist:
-    - '*'
 
 requirements:
-  build:
-    - libcap-ng-el8-x86_64 ==0.7.11 *_0
   host:
-    - libcap-ng-el8-x86_64 ==0.7.11 *_0
-    - sysroot_linux-64 2.28.*
   run:
-    - libcap-ng-el8-x86_64 ==0.7.11 *_0
     - sysroot_linux-64 2.28.*
+    - libcap-ng-el8-x86_64 ==0.7.11 *_0
+
 test:
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/cap-ng.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libcap-ng.so
 
 about:
   home: http://people.redhat.com/sgrubb/libcap-ng
@@ -45,4 +41,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

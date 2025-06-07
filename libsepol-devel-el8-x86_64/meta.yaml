@@ -17,22 +17,21 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  missing_dso_whitelist:
-    - '*'
 
 requirements:
-  build:
-    - libsepol-el8-x86_64 ==2.9 *_0
   host:
-    - libsepol-el8-x86_64 ==2.9 *_0
-    - sysroot_linux-64 2.28.*
   run:
-    - libsepol-el8-x86_64 ==2.9 *_0
     - sysroot_linux-64 2.28.*
+    - libsepol-el8-x86_64 ==2.9 *_0
 
 test:
+  requires:
+    - pkg-config
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/sepol/sepol.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libsepol.so
+    - export PKG_CONFIG_PATH=${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libsepol
 
 about:
   home: https://github.com/SELinuxProject/selinux/wiki
@@ -46,4 +45,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

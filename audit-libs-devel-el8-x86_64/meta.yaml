@@ -17,21 +17,20 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  missing_dso_whitelist:
-    - '*'
 
 requirements:
-  build:
-    - audit-libs-el8-x86_64 ==3.0.7 *_0
   host:
-    - audit-libs-el8-x86_64 ==3.0.7 *_0
-    - sysroot_linux-64 2.28.*
   run:
-    - audit-libs-el8-x86_64 ==3.0.7 *_0
     - sysroot_linux-64 2.28.*
+    - audit-libs-el8-x86_64 ==3.0.7 *_0
+    - libcap-ng-devel-el8-x86_64 >=0.7.11 *_0
+
 test:
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/libaudit.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/auparse.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libaudit.so
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libauparse.so
 
 about:
   home: http://people.redhat.com/sgrubb/audit/
@@ -45,4 +44,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

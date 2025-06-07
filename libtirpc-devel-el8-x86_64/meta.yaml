@@ -17,21 +17,21 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  missing_dso_whitelist:
-    - '*'
 
 requirements:
-  build:
-    - libtirpc-el8-x86_64 ==1.1.4 *_0
   host:
-    - libtirpc-el8-x86_64 ==1.1.4 *_0
-    - sysroot_linux-64 2.28.*
   run:
-    - libtirpc-el8-x86_64 ==1.1.4 *_0
     - sysroot_linux-64 2.28.*
+    - libtirpc-el8-x86_64 ==1.1.4 *_0
+
 test:
+  requires:
+    - pkg-config
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/tirpc/netconfig.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/lib64/libtirpc.so
+    - export PKG_CONFIG_PATH=${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libtirpc
 
 about:
   home: http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
@@ -45,4 +45,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

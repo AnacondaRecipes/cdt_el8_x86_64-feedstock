@@ -17,23 +17,13 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  ignore_run_exports:
-    - sysroot_linux-64
-    - libxcrypt-el8-x86_64
-    - openssl
-    - xz
-    - zlib
   missing_dso_whitelist:
     - '*'
 
 requirements:
-  host:
+  build:
     - sysroot_linux-64 2.28.*
-    - libgcc-ng
-    - libxcrypt-el8-x86_64 >=4.1.1 *_0
-    - openssl 1  # libcrypto.so.1.1
-    - xz
-    - zlib
+  host:
   run:
     - sysroot_linux-64 2.28.*
     - libgcc-ng
@@ -44,7 +34,8 @@ requirements:
 
 test:
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libkmod.so.2
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libkmod.so.2.3.3
 
 about:
   home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
@@ -58,4 +49,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

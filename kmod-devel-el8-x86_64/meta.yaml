@@ -17,22 +17,22 @@ build:
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  missing_dso_whitelist:
-    - '*'
 
 requirements:
-  build:
-    - kmod-libs-el8-x86_64 ==25 *_0
   host:
-    - kmod-libs-el8-x86_64 ==25 *_0
-    - sysroot_linux-64 2.28.*
   run:
-    - kmod-libs-el8-x86_64 ==25 *_0
     - sysroot_linux-64 2.28.*
+    - kmod-libs-el8-x86_64 ==25 *_0
+    - libxcrypt-devel-el8-x86_64 >=4.1.1 *_0
 
 test:
+  requires:
+    - pkg-config
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/libkmod.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libkmod.so
+    - export PKG_CONFIG_PATH=${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libkmod
 
 about:
   home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
@@ -46,4 +46,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-
