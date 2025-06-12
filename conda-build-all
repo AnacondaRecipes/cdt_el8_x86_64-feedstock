@@ -57,6 +57,7 @@ cb_base_args=(
     conda build
     --error-overlinking
     --error-overdepending
+    "$@"
 )
 
 for cdt in ${ordered_cdts[*]} ; do

@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 mkdir -p ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot
 mkdir -p ${PREFIX}/x86_64-conda-linux-gnu/sysroot
