@@ -31,9 +31,10 @@ test:
 
 about:
   home: http://sourceforge.net/projects/cracklib/
-  license: LGPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
-#  license_file: cracklib-copying.lib
+  license_file:
+    - COPYING.LIB
   summary: (CDT) Development files needed for building applications which use cracklib
   description: |
     The cracklib-devel package contains the header files and libraries needed for

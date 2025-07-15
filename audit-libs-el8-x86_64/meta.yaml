@@ -39,9 +39,10 @@ test:
 
 about:
   home: http://people.redhat.com/sgrubb/audit/
-  license: LGPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
-#  license_file: audit-libs-copying.lib
+  license_file:
+    - lgpl-2.1.txt
   summary: (CDT) Dynamic library for libaudit
   description: |
     The audit-libs package contains the dynamic libraries needed for applications

@@ -37,9 +37,10 @@ test:
 
 about:
   home: https://github.com/libpwquality/libpwquality/
-  license: BSD or GPLv2+
+  license: BSD-3-Clause or GPL-2.0-only  # BSD or GPLv2+
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/libpwquality/COPYING
+  license_file:
+    - COPYING
   summary: "(CDT) A library for password generation and password quality checking"
   description: |
         This is a library for password quality checks and generation of random

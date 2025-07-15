@@ -35,9 +35,10 @@ test:
 
 about:
   home: http://sourceforge.net/projects/cracklib/
-  license: LGPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
-#  license_file: cracklib-copying.lib
+  license_file:
+    - COPYING.LIB
   summary: (CDT) A password-checking library
   description: |
     CrackLib tests passwords to determine whether they match certain security-

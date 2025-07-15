@@ -34,9 +34,12 @@ test:
 
 about:
   home: https://github.com/besser82/libxcrypt
-  license: LGPL-2.0-or-later AND BSD AND Public Domain
+  # LICENSING says LGPL-2.1-or-later, COPYING.LIB is that license
+  license: LGPL-2.1-or-later  # LGPLv2+ and BSD and Public Domain
   license_family: LGPL
-#  license_file: libxcrypt-copying.lib
+  license_file:
+    - LICENSING
+    - COPYING.LIB
   summary: (CDT) Extended crypt library for DES, MD5, Blowfish and others
   description: |
     libxcrypt is a modern library for one-way hashing of passwords.  It

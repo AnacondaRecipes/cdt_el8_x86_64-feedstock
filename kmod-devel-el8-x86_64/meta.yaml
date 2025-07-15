@@ -36,9 +36,10 @@ test:
 
 about:
   home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
-  license: GPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: GPL2
-#  license_file: kmod-copying
+  license_file:
+    - COPYING
   summary: (CDT) Header files for kmod development
   description: |
     The kmod-devel package provides header files used for development of

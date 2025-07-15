@@ -39,9 +39,11 @@ test:
 
 about:
   home: http://www.linux-pam.org/
-  license: BSD and GPLv2+
+  license: BSD-3-Clause or GPL-2.0-only  # BSD and GPLv2+
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/pam/Copyright
+  license_file:
+    - gpl-2.0.txt
+    - Copyright
   summary: (CDT) An extensible library which provides authentication for applications
   description: |
     PAM (Pluggable Authentication Modules) is a system security tool that allows

@@ -34,9 +34,10 @@ test:
 
 about:
   home: http://people.redhat.com/sgrubb/libcap-ng
-  license: LGPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
-#  license_file: libcap-ng-copying.lib
+  license_file:
+    - COPYING.LIB
   summary: (CDT) An alternate posix capabilities library
   description: |
     Libcap-ng is a library that makes using posix capabilities easier

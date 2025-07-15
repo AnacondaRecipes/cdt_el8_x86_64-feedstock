@@ -35,9 +35,10 @@ test:
 
 about:
   home: http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
-  license: SISSL and BSD
+  license: BSD-3-Clause  # SISSL and BSD
   license_family: BSD
-#  license_file: libtirpc-copying.lib
+  license_file:
+    - COPYING
   summary: (CDT) Development files for the libtirpc library
   description: |
     This package includes header files and libraries necessary for

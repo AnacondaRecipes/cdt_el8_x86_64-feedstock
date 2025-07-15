@@ -15,8 +15,11 @@ build:
 
 about:
   home: http://www.jpackage.org/
-  license: BSD
+  # license from https://github.com/fedora-java/javapackages
+  license: BSD-3-Clause
   license_family: BSD
+  license_file:
+    - LICENSE
   summary: "(CDT) JPackage utilities"
   description: |
         Utilities for the JPackage Project <http://www.jpackage.org/>.  It contains

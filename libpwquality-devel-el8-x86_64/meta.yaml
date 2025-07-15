@@ -37,9 +37,10 @@ test:
 
 about:
   home: https://github.com/libpwquality/libpwquality/
-  license: BSD or GPLv2+
+  license: BSD-3-Clause or GPL-2.0-only  # BSD or GPLv2+
   license_family: GPL2
-#  license_file: libpwquality-copying
+  license_file:
+    - COPYING
   summary: (CDT) Support for development of applications using the libpwquality library
   description: |
     Files needed for development of applications using the libpwquality library.

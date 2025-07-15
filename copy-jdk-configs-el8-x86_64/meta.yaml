@@ -17,6 +17,8 @@ about:
   home: https://pagure.io/copy_jdk_configs
   license: BSD
   license_family: BSD
+  license_file:
+    - LICENSE
   summary: "(CDT) JDKs configuration files copier"
   description: |
         Utility script to transfer JDKs configuration files between updates or for

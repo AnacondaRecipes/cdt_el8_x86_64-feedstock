@@ -33,9 +33,10 @@ test:
 
 about:
   home: https://github.com/SELinuxProject/selinux/wiki
-  license: LGPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
-#  license_file: libsepol-license
+  license_file:
+    - COPYING
   summary: (CDT) SELinux binary policy manipulation library
   description: |
     Security-enhanced Linux is a feature of the Linux® kernel and a number of

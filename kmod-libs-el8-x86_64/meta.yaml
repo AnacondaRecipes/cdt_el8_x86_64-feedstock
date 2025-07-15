@@ -39,9 +39,10 @@ test:
 
 about:
   home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
-  license: LGPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
-#  license_file: kmod-copying
+  license_file:
+    - COPYING
   summary: (CDT) Libraries to handle kernel module loading and unloading
   description: |
     The kmod-libs package provides runtime libraries for any application that
