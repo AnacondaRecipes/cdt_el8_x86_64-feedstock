@@ -7,37 +7,39 @@ source:
     sha256: 395c0d0004bfd8c0f4c66910a31afefbfc90a55e48ea98ffedeeab9a178cae6f
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/kmod-25-19.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/k/kmod-25-19.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  missing_dso_whitelist:
-    - '*'
 
 requirements:
-  build:
-    - kmod-libs-el8-x86_64 ==25 *_0
   host:
-    - kmod-libs-el8-x86_64 ==25 *_0
-    - sysroot_linux-64 2.28.*
   run:
-    - kmod-libs-el8-x86_64 ==25 *_0
     - sysroot_linux-64 2.28.*
+    - kmod-libs-el8-x86_64 ==25 *_0
+    - libxcrypt-devel-el8-x86_64 >=4.1.1 *_0
 
 test:
+  requires:
+    - pkg-config
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/libkmod.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libkmod.so
+    - export PKG_CONFIG_PATH=${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libkmod
 
 about:
   home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
-  license: GPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: GPL2
-#  license_file: kmod-copying
+  license_file:
+    - COPYING
   summary: (CDT) Header files for kmod development
   description: |
     The kmod-devel package provides header files used for development of
@@ -45,4 +47,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

@@ -3,15 +3,16 @@ package:
   version: 2.9
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/libselinux-2.9-8.el8.x86_64.rpm
-    sha256: c7e2ef40e4adee049a8aab6110d410559ca3f44eaa68be5d0993f298e954edc0
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/l/libselinux-2.9-8.el8.x86_64.rpm
+    sha256: d1e85c65cb0f399e1863dfd4e67c8e0fadf7129ce6ea0ff94050ab0a13ea7fb5
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/libselinux-2.9-8.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libselinux-2.9-8.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
   binary_relocation: false
@@ -21,22 +22,23 @@ build:
 
 requirements:
   build:
-    - libsepol-el8-x86_64 >=2.9 *_0
+    - sysroot_linux-64 2.28.*
   host:
-    - libsepol-el8-x86_64 >=2.9 *_0
-    - sysroot_linux-64 2.28.*
   run:
-    - libsepol-el8-x86_64 >=2.9 *_0
     - sysroot_linux-64 2.28.*
+    - libsepol-el8-x86_64 >=2.9 *_0
+    - pcre2
 
 test:
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libselinux.so.1
 
 about:
   home: https://github.com/SELinuxProject/selinux/wiki
-  license: Public-Domain
-  license_family: Public-Domain
+  license: libselinux-1.0
+  license_family: Other
+  license_file:
+    - LICENSE
   summary: (CDT) SELinux library and simple utilities
   description: |
     Security-enhanced Linux is a feature of the Linux® kernel and a number of
@@ -53,4 +55,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

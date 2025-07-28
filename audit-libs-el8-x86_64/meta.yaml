@@ -3,15 +3,16 @@ package:
   version: 3.0.7
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/audit-libs-3.0.7-5.el8.x86_64.rpm
-    sha256: 552ae323cd8de99295c0addc8f5dd0a2737f10d1f46c9f62f1bc7ce072c41841
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/a/audit-libs-3.0.7-5.el8.x86_64.rpm
+    sha256: fd745f486bd742b474ceef449fcdf4398d4406675a1c60de8b79ed8d5bdf40e4
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/audit-3.0.7-5.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/a/audit-3.0.7-5.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
   binary_relocation: false
@@ -20,20 +21,28 @@ build:
     - '*'
 
 requirements:
-  host:
+  build:
     - sysroot_linux-64 2.28.*
+  host:
   run:
     - sysroot_linux-64 2.28.*
+    - libcap-ng-el8-x86_64 >=0.7.11 *_0
 
 test:
   commands:
-    - echo "it installs!"
+    - test ! -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libaudit.so
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libaudit.so.1
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libaudit.so.1.0.0
+    - test ! -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libauparse.so
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libauparse.so.0
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libauparse.so.0.0.0
 
 about:
   home: http://people.redhat.com/sgrubb/audit/
-  license: LGPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
-#  license_file: audit-libs-copying.lib
+  license_file:
+    - lgpl-2.1.txt
   summary: (CDT) Dynamic library for libaudit
   description: |
     The audit-libs package contains the dynamic libraries needed for applications
@@ -41,4 +50,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

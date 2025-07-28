@@ -3,43 +3,43 @@ package:
   version: 2.9
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/libselinux-devel-2.9-8.el8.x86_64.rpm
-    sha256: d6e68c6171b3a8f0d99a91d5da5de2c15a518a1f0c2c5b7990c99f8c565d6e52
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/l/libselinux-devel-2.9-8.el8.x86_64.rpm
+    sha256: e51c71849563d4fc041aee519b0771f71188f1b4f3d29f44b102919334059ea4
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/libselinux-2.9-8.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libselinux-2.9-8.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  missing_dso_whitelist:
-    - '*'
 
 requirements:
-  build:
-    - libselinux-el8-x86_64 ==2.9 *_0
-    - libsepol-devel-el8-x86_64 >=2.9 *_0
   host:
-    - libselinux-el8-x86_64 ==2.9 *_0
-    - libsepol-devel-el8-x86_64 >=2.9 *_0
-    - sysroot_linux-64 2.28.*
   run:
+    - sysroot_linux-64 2.28.*
     - libselinux-el8-x86_64 ==2.9 *_0
     - libsepol-devel-el8-x86_64 >=2.9 *_0
-    - sysroot_linux-64 2.28.*
 
 test:
+  requires:
+    - pkg-config
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/selinux/selinux.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libselinux.so
+    - export PKG_CONFIG_PATH=${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libselinux
 
 about:
   home: https://github.com/SELinuxProject/selinux/wiki
-  license: Public-Domain
-  license_family: Public-Domain
+  license: libselinux-1.0
+  license_family: Other
+  license_file:
+    - LICENSE
   summary: (CDT) Header files and libraries used to build SELinux
   description: |
     The libselinux-devel package contains the libraries and header files needed
@@ -47,4 +47,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

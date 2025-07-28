@@ -7,37 +7,40 @@ source:
     sha256: ad22bc7c947ef8d18a1396bc846768938854737ff2bad22eb0b9096167ddefd5
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/libpwquality-1.4.4-6.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libpwquality-1.4.4-6.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  missing_dso_whitelist:
-    - '*'
 
 requirements:
-  build:
-    - libpwquality-el8-x86_64 ==1.4.4 *_0
   host:
-    - libpwquality-el8-x86_64 ==1.4.4 *_0
-    - sysroot_linux-64 2.28.*
   run:
-    - libpwquality-el8-x86_64 ==1.4.4 *_0
     - sysroot_linux-64 2.28.*
+    - libpwquality-el8-x86_64 ==1.4.4 *_0
+    - cracklib-devel-el8-x86_64 >=2.8 *_0
+    - pam-devel-el8-x86_64 >=1.3.1 *_0  # [with_pam]
 
 test:
+  requires:
+    - pkg-config
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/pwquality.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libpwquality.so
+    - export PKG_CONFIG_PATH=${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags pwquality
 
 about:
   home: https://github.com/libpwquality/libpwquality/
-  license: BSD or GPLv2+
+  license: BSD-3-Clause or GPL-2.0-only  # BSD or GPLv2+
   license_family: GPL2
-#  license_file: libpwquality-copying
+  license_file:
+    - COPYING
   summary: (CDT) Support for development of applications using the libpwquality library
   description: |
     Files needed for development of applications using the libpwquality library.
@@ -45,4 +48,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

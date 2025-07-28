@@ -1,0 +1,51 @@
+package:
+  name: libxcrypt-devel-el8-x86_64
+  version: 4.1.1
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/l/libxcrypt-devel-4.1.1-6.el8.x86_64.rpm
+    sha256: 71242b7ce34cbadc0eb117e4608887ddd64236e7e808fb593f9b3d7cccdcbc40
+    no_hoist: true
+    folder: binary
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libxcrypt-4.1.1-6.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  skip: True  # [not (linux and x86_64)]
+  number: 0
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-64 2.28.*
+    - libxcrypt-el8-x86_64 ==4.1.1 *_0
+
+test:
+  requires:
+    - pkg-config
+  commands:
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/crypt.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/lib64/libcrypt.so
+    - export PKG_CONFIG_PATH=${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libcrypt
+    - pkg-config --cflags libxcrypt
+
+about:
+  home: https://github.com/besser82/libxcrypt
+  # LICENSING says LGPL-2.1-or-later, COPYING.LIB is that license
+  license: LGPL-2.1-or-later  # LGPLv2+ and BSD and Public Domain
+  license_family: LGPL
+  license_file:
+    - LICENSING
+    - COPYING.LIB
+  summary: (CDT) Development files for libxcrypt
+  description: |
+    The libxcrypt-devel package contains libraries and header files for
+    developing applications that use libxcrypt.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,56 @@
+package:
+  name: libtirpc-el8-x86_64
+  version: 1.1.4
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/l/libtirpc-1.1.4-8.el8.x86_64.rpm
+    sha256: d8d8f58573146fe53cf97fe46859ea02bd2d9f150a67e174a97d82311ad371b5
+    no_hoist: true
+    folder: binary
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libtirpc-1.1.4-8.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  skip: True  # [not (linux and x86_64)]
+  number: 0
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-64 2.28.*
+  host:
+  run:
+    - sysroot_linux-64 2.28.*
+    - krb5
+
+test:
+  commands:
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/lib64/libtirpc.so.3
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/lib64/libtirpc.so.3.0.0
+
+about:
+  home: http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
+  license: BSD-3-Clause  # SISSL and BSD
+  license_family: BSD
+  license_file:
+    - COPYING
+  summary: (CDT) Transport Independent RPC Library
+  description: |
+    This package contains SunLib's implementation of transport-independent
+    RPC (TI-RPC) documentation.  This library forms a piece of the base of
+    Open Network Computing (ONC), and is derived directly from the
+    Solaris 2.3 source.
+
+    TI-RPC is an enhanced version of TS-RPC that requires the UNIX System V
+    Transport Layer Interface (TLI) or an equivalent X/Open Transport Interface
+    (XTI).  TI-RPC is on-the-wire compatible with the TS-RPC, which is supported
+    by almost 70 vendors on all major operating systems.  TS-RPC source code
+    (RPCSRC 4.0) remains available from several internet sites.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

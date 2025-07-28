@@ -14,8 +14,25 @@ if [[ -d usr/lib64 ]]; then
 fi
 pushd ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot > /dev/null 2>&1
 cp -Rf "${SRC_DIR}"/binary/* .
-popd
-pushd ${PREFIX}/x86_64-conda-linux-gnu/sysroot > /dev/null 2>&1
-cp -Rf "${SRC_DIR}"/binary/* .
+
+# Update symlinks.
+for sl in usr/share/systemtap/tapset/x86_64/*.stp; do
+  link=$(readlink ${sl})
+  unlink ${sl}
+  ln -s ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot${link} ${sl}
+done
+
+
 popd
 
+pushd ${PREFIX}/x86_64-conda-linux-gnu/sysroot > /dev/null 2>&1
+cp -Rf "${SRC_DIR}"/binary/* .
+
+# Update symlinks.
+for sl in usr/share/systemtap/tapset/x86_64/*.stp; do
+  link=$(readlink ${sl})
+  unlink ${sl}
+  ln -s ${PREFIX}/x86_64-conda-linux-gnu/sysroot${link} ${sl}
+done
+
+popd

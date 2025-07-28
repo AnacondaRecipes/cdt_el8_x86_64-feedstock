@@ -3,15 +3,16 @@ package:
   version: 25
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/kmod-25-19.el8.x86_64.rpm
-    sha256: 95b70611327377b76917da6a4ab964f314458fef165d720cc02effe2a50fd48a
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/k/kmod-25-19.el8.x86_64.rpm
+    sha256: 993d53503b870d0520f04183c8642ba2435fbd78d0dd44fbae4b1d3c05416ef1
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/kmod-25-19.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/k/kmod-25-19.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
   binary_relocation: false
@@ -20,20 +21,28 @@ build:
     - '*'
 
 requirements:
-  host:
+  build:
     - sysroot_linux-64 2.28.*
+  host:
   run:
     - sysroot_linux-64 2.28.*
+    - kmod-libs-el8-x86_64 ==25 *_0
+    - libgcc-ng
+    - libxcrypt-el8-x86_64 >=4.1.1 *_0
+    - xz
+    - zlib
 
 test:
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/sbin/modinfo
 
 about:
   home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
-  license: GPL-2.0-or-later
+  # https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git/tree/COPYING
+  license: LGPL-2.1-only  # GPL-2.0-or-later
   license_family: GPL2
-#  license_file: kmod-copying
+  license_file:
+    - COPYING
   summary: (CDT) Linux kernel module management utilities
   description: |
     The kmod package provides various programs needed for automatic loading and
@@ -43,4 +52,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

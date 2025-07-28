@@ -3,15 +3,16 @@ package:
   version: 2.9.6
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/cracklib-2.9.6-15.el8.x86_64.rpm
-    sha256: 5d0b69be590d57a28c7fa26b05ac801ab4325b94933c9b0c077616bc4dac8df2
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/c/cracklib-2.9.6-15.el8.x86_64.rpm
+    sha256: f2da634615a3247eac8a345453f73cd18433bb94508d3c9afeef3bb1db3ef7d3
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/cracklib-2.9.6-15.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/c/cracklib-2.9.6-15.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
   binary_relocation: false
@@ -20,20 +21,24 @@ build:
     - '*'
 
 requirements:
-  host:
+  build:
     - sysroot_linux-64 2.28.*
+  host:
   run:
     - sysroot_linux-64 2.28.*
+    - zlib
 
 test:
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libcrack.so.2
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libcrack.so.2.9.0
 
 about:
   home: http://sourceforge.net/projects/cracklib/
-  license: LGPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
-#  license_file: cracklib-copying.lib
+  license_file:
+    - COPYING.LIB
   summary: (CDT) A password-checking library
   description: |
     CrackLib tests passwords to determine whether they match certain security-
@@ -51,4 +56,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

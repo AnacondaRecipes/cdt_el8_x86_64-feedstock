@@ -3,15 +3,16 @@ package:
   version: 2.9
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/libsepol-2.9-3.el8.x86_64.rpm
-    sha256: 55bfbf557e668657b3d8e9b7389c9ec89944c9c21957eecb5e311a9d50a7708d
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/l/libsepol-2.9-3.el8.x86_64.rpm
+    sha256: cc017c27e60d9f6d83db9d6828cad89b804d9f50476d88b23e0cd7a69b58f107
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/libsepol-2.9-3.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/l/libsepol-2.9-3.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
   binary_relocation: false
@@ -20,20 +21,22 @@ build:
     - '*'
 
 requirements:
-  host:
+  build:
     - sysroot_linux-64 2.28.*
+  host:
   run:
     - sysroot_linux-64 2.28.*
 
 test:
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libsepol.so.1
 
 about:
   home: https://github.com/SELinuxProject/selinux/wiki
-  license: LGPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
-#  license_file: libsepol-license
+  license_file:
+    - COPYING
   summary: (CDT) SELinux binary policy manipulation library
   description: |
     Security-enhanced Linux is a feature of the Linux® kernel and a number of
@@ -51,4 +54,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

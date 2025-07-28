@@ -3,41 +3,43 @@ package:
   version: 1.3.1
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/pam-devel-1.3.1-27.el8.x86_64.rpm
-    sha256: 8fea6c8f1088a98cd376008b793fa7d14c67db28c00c0a1b39aafd1bea6fea11
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/p/pam-devel-1.3.1-27.el8.x86_64.rpm
+    sha256: 87c741063e506de7478a15c1211ca08f467e62268a19e5f6b89c8d6f40c6acd5
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/pam-1.3.1-27.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/p/pam-1.3.1-27.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
-  missing_dso_whitelist:
-    - '*'
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
 
 requirements:
-  build:
-    - pam-el8-x86_64 ==1.3.1 *_0
   host:
-    - pam-el8-x86_64 ==1.3.1 *_0
-    - sysroot_linux-64 2.28.*
   run:
     - pam-el8-x86_64 ==1.3.1 *_0
-    - sysroot_linux-64 2.28.*
+    - audit-libs-devel-el8-x86_64 >=1.0.8 *_0
+    - libpwquality-devel-el8-x86_64 >=0.9.9 *_0
+    - libselinux-devel-el8-x86_64 >=1.33.2 *_0
+    - libtirpc-devel-el8-x86_64 >=1.1.4 *_0
+    - libxcrypt-devel-el8-x86_64 >=4.1.1 *_0
 
 test:
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/security/pam_client.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libpam.so
 
 about:
   home: http://www.linux-pam.org/
-  license: BSD and GPLv2+
+  license: BSD-3-Clause or GPL-2.0-only  # BSD and GPLv2+
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/pam-devel/html/mwg-copyright.html
+  license_file:
+    - gpl-2.0.txt
+    - Copyright
   summary: "(CDT) Files needed for developing PAM-aware applications and modules for PAM"
   description: |
         PAM (Pluggable Authentication Modules) is a system security tool that allows
@@ -48,4 +50,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-

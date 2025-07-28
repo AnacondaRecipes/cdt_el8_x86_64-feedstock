@@ -3,40 +3,41 @@ package:
   version: 3.0.7
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/audit-libs-devel-3.0.7-5.el8.x86_64.rpm
-    sha256: 357e3d6d3fae2c8b214452fd6c4c8f279fb6a2643290a76f7d7535dbe40d037e
+  - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/os/Packages/a/audit-libs-devel-3.0.7-5.el8.x86_64.rpm
+    sha256: 7b7a116edb95349c562eb5036fbab81e16e42323840b84c09265a2fc711458b6
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/audit-3.0.7-5.el8.src.rpm
+  # - url: https://download.rockylinux.org/vault/rocky/8.9/BaseOS/source/tree/Packages/a/audit-3.0.7-5.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
+  skip: True  # [not (linux and x86_64)]
   number: 0
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  missing_dso_whitelist:
-    - '*'
 
 requirements:
-  build:
-    - audit-libs-el8-x86_64 ==3.0.7 *_0
   host:
-    - audit-libs-el8-x86_64 ==3.0.7 *_0
-    - sysroot_linux-64 2.28.*
   run:
-    - audit-libs-el8-x86_64 ==3.0.7 *_0
     - sysroot_linux-64 2.28.*
+    - audit-libs-el8-x86_64 ==3.0.7 *_0
+    - libcap-ng-devel-el8-x86_64 >=0.7.11 *_0
+
 test:
   commands:
-    - echo "it installs!"
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/libaudit.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/include/auparse.h
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libaudit.so
+    - test -f ${PREFIX}/x86_64-conda_el8-linux-gnu/sysroot/usr/lib64/libauparse.so
 
 about:
   home: http://people.redhat.com/sgrubb/audit/
-  license: LGPL-2.0-or-later
+  license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
-#  license_file: audit-libs-copying.lib
+  license_file:
+    - lgpl-2.1.txt
   summary: (CDT) Header files for libaudit
   description: |
     The audit-libs-devel package contains the header files needed for developing
@@ -44,4 +45,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
-
